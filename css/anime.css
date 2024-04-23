@@ -14,7 +14,7 @@ body {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
-    background-color: #282828;
+    background-color: #131314;
     scroll-behavior: smooth;
     user-select: none;
 }
@@ -60,7 +60,6 @@ footer a {
     background: linear-gradient(to right, #eb3349 40%, #f45c43);
     width: 100%;
     text-align: center;
-    padding-top: 25px;
     height: 86px;
     margin: auto;
     font-family: "Roboto", sans-serif;
@@ -583,6 +582,8 @@ h2 {
     margin: 0px 2px;
     margin-bottom: 10px;
     display: inline-block;
+    width: 70px;
+    text-align: center;
 }
 
 .la-anime {
@@ -1113,4 +1114,84 @@ h2 {
 
 .slider-main {
     position: relative;
+}
+
+
+.ep-divo-upper {
+    border: none;
+    background-color: orange;
+    margin: 5px 10px 10px 10px;
+    padding: 10px 15px;
+}
+
+.ep-divo-upper option {
+    width: 120px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.ep-divo-lower {
+    max-height: 320px;
+    overflow-y: auto;
+    background-color: unset;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    place-items: center;
+    grid-gap: 10px;
+    transition: all 0.5s linear;
+}
+
+.ep-divo-outer {
+    background-color: #27272c;
+    width: 90%;
+    max-width: 770px;
+    margin: 20px auto;
+    border-radius: 5px;
+    padding-top: 5px;
+}
+
+.ep-divo-outer section {
+    display: flex;
+    flex-direction: row;
+}
+
+.ep-btn {
+    background-color: #454444;
+    color: white;
+    display: block;
+}
+
+.ep-divo-outer h2 {
+    color: white;
+    margin-left: 15px;
+}
+
+.ep-btn:hover {
+    background-color: #eb001f;
+}
+
+#title1 {
+    width: 70%;
+    height: 86px
+}
+
+#title1 a {
+    height: 86px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 520px) {
+    #title1 img {
+        height: 55px;
+    }
 }

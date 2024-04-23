@@ -1,14 +1,14 @@
 // Api urls
 
-const ProxyApi = "https://proxy.techzbots1.workers.dev/?u="
+const ProxyApi = "https://proxy.techzbots1.workers.dev/?u=";
 const searchapi = "/search/";
 
 // Api Server Manager
 
-const AvailableServers = ['https://api1.anime-dex.workers.dev', 'https://api2.anime-dex.workers.dev', 'https://api3.anime-dex.workers.dev']
+const AvailableServers = ["https://api100.anime-dex.workers.dev"];
 
 function getApiServer() {
-    return AvailableServers[Math.floor(Math.random() * AvailableServers.length)]
+    return AvailableServers[Math.floor(Math.random() * AvailableServers.length)];
 }
 
 // Usefull functions
@@ -16,7 +16,6 @@ function getApiServer() {
 async function getJson(path, errCount = 0) {
     const ApiServer = getApiServer();
     let url = ApiServer + path;
-
 
     if (errCount > 2) {
         throw `Too many errors while fetching ${url}`;
@@ -29,7 +28,9 @@ async function getJson(path, errCount = 0) {
     }
 
     try {
-        const response = await fetch(url);
+        const _url_of_site = new URL(window.location.href);
+        const referer = _url_of_site.origin;
+        const response = await fetch(url, { headers: { referer: referer } });
         return await response.json();
     } catch (errors) {
         console.error(errors);
@@ -84,7 +85,7 @@ async function SearchAnime(query, page = 1) {
             anime["subOrDub"] = "SUB";
         }
 
-        html += `<a href="./anime.html?anime=${anime["id"]
+        html += `<a href="./anime.html?anime_id=${anime["id"]
             }"><div class="poster la-anime"> <div id="shadow1" class="shadow"> <div class="dubb">${anime[
                 "subOrDub"
             ].toUpperCase()}</div></div><div id="shadow2" class="shadow"> <img class="lzy_img" src="./static/loading1.gif" data-src="${anime["img"]
@@ -111,7 +112,6 @@ if (query == null) {
 
 document.getElementById("latest").innerHTML = `Search Results: ${query}`;
 
-
 // Load more results on scroll
 window.addEventListener("scroll", () => {
     if (
@@ -131,12 +131,11 @@ window.addEventListener("scroll", () => {
 
 async function loadData() {
     try {
-        const data = await SearchAnime(query, page)
+        const data = await SearchAnime(query, page);
         hasNextPage = data;
         page += 1;
         RefreshLazyLoader();
         console.log("Search animes loaded");
-
     } catch (err) {
         document.getElementById("main-section").style.display = "none";
         document.getElementById("error-page").style.display = "block";
